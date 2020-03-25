@@ -6,10 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from .forms import RegistrationForm, CommentForm, AvatarForm
 from .models import Global, Country, Province, Comment, Profile
-from .scraper import pop_database
 from .utils import delete_file
-
-# pop_database()
 
 
 def home(request):
