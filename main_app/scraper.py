@@ -117,4 +117,4 @@ def pop_database():
                     province_object.save()
         num += 1
 
-pop_database()
+# pop_database()
