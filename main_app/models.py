@@ -54,6 +54,20 @@ class Province(models.Model):
         ordering = ['-infected']
 
 
+class County(models.Model):
+    name = models.CharField(max_length=100)
+    infected = models.IntegerField()
+    deaths = models.IntegerField()
+    recovered = models.IntegerField()
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-infected']
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.URLField(max_length=200)
