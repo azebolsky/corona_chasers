@@ -15,4 +15,14 @@ $(document).ready(function () {
         let btnId = evt.target.dataset.id;
         $(`.edit-form[data-id="${btnId}"]`).toggle();
     }
+
+    num = $('[data-val]');
+    for (let i = 0; i < num.length; i++) {
+        let val = parseInt(num[i].innerText);
+        val = numberWithCommas(val);
+        function numberWithCommas(x) {
+            return x.toLocaleString('en', {useGrouping:true})
+        }
+        num[i].innerText = val;
+    }
 });
