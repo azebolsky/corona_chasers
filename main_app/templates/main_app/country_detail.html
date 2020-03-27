@@ -57,35 +57,40 @@
   </form>
 {% endif %}
 <br>
-{% for comment in country.comment_set.all %}
-  <div class="card">
-    <div class="comment-container">
-      <div class="comment-avatar">
-        <img class="circle" src="{{ comment.created_by.profile.avatar }}">
-      </div>
-      <div class="comment-content">
-        <a href="{% url 'profiles_detail' comment.created_by.id %}">{{ comment.created_by.username }}</a>
-        <p>{{ comment.content }}</p>
-      </div>
-    </div>
-    <p class="comment-date">{{ comment.posted_at }}</p>
 
-    {% if user.id == comment.created_by.id %}
-    <button id="edit-btn" data-id="{{ forloop.counter }}" class="btn light-blue darken-1">Edit</button>
-    <div class="edit-form" data-id="{{ forloop.counter }}">
-      <form action="{% url 'update_comment' country.id comment.id %}" method="post">
-        {% csrf_token %}
-        <textarea name="content" maxlength="250" required>{{ comment.content }}</textarea>
-        <input type="submit" value="Update" class="btn light-blue darken-1 update-btn">
-      </form>
-      <form class="delete-btn" action="{% url 'delete_comment' country.id comment.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Delete" class="btn light-blue darken-1 untrack-hover">
-      </form>
-      {% endif %}
+{% if country.comment_set.first %}
+  {% for comment in country.comment_set.all %}
+    <div class="card">
+      <div class="comment-container">
+        <div class="comment-avatar">
+          <img class="circle" src="{{ comment.created_by.profile.avatar }}">
+        </div>
+        <div class="comment-content">
+          <a href="{% url 'profiles_detail' comment.created_by.id %}">{{ comment.created_by.username }}</a>
+          <p>{{ comment.content }}</p>
+        </div>
+      </div>
+      <p class="comment-date">{{ comment.posted_at }}</p>
+
+      {% if user.id == comment.created_by.id %}
+      <button id="edit-btn" data-id="{{ forloop.counter }}" class="btn light-blue darken-1">Edit</button>
+      <div class="edit-form" data-id="{{ forloop.counter }}">
+        <form action="{% url 'update_comment' country.id comment.id %}" method="post">
+          {% csrf_token %}
+          <textarea name="content" maxlength="250" required>{{ comment.content }}</textarea>
+          <input type="submit" value="Update" class="btn light-blue darken-1 update-btn">
+        </form>
+        <form class="delete-btn" action="{% url 'delete_comment' country.id comment.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Delete" class="btn light-blue darken-1 untrack-hover">
+        </form>
+        {% endif %}
+      </div>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
+{% else %}
+  <h5>No comments posted.</h5>
+{% endif %}
 <br>
 
 {% endblock %}
