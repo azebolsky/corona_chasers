@@ -14,7 +14,6 @@
   {% endif %}
 </div>
 
-
 {% if profile_user.country_set.first %}
   <table class="striped list-table">
     <thead>
@@ -42,7 +41,7 @@
     </tbody>
   </table>
 {% else %}
-  <h3>No Countries Currently Tracked</h3>
+  <h4 class="center">No Countries Currently Tracked</h4>
 {% endif %}
 
 {% endblock %}
