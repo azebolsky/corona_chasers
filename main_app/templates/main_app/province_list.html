@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<a class="back-link" href="{% url 'countries_detail' province_list.first.country.id %}">Back to {{ province_list.first.country.name }}</a>
+
 <h1>Provinces</h1>
 
 <form method="get">

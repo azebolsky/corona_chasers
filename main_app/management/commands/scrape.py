@@ -54,11 +54,7 @@ class Command(BaseCommand):
             p.deaths = 0
             p.save()
 
-        for c in County.objects.all():
-            c.infected = 0
-            c.recovered = 0
-            c.deaths = 0
-            c.save()
+        County.objects.all().delete()
 
         # Runs a loop for the amount of provinces/countries
         for all_sets in page_dict['rawData']:
@@ -125,27 +121,16 @@ class Command(BaseCommand):
                         province_object.save()
 
                 if page_dict['rawData'][num]['Admin2'] != '':
-                    # If county exists update, if not create
-                    if page_dict['rawData'][num]['Admin2'] in County.objects.all().values_list('name', flat=True) and page_dict['rawData'][num]['Province_State'] in County.objects.all().values_list('province', flat=True):
-                        c = County.objects.get(
-                            name=page_dict['rawData'][num]['Admin2'], province=page_dict['rawData'][num]['Province_State'])
-                        c.name = page_dict['rawData'][num]['Admin2']
-                        c.province = Province.objects.get(
-                            name=page_dict['rawData'][num]['Province_State'])
-                        c.infected = int(page_dict['rawData'][num]['Confirmed'])
-                        c.recovered = int(page_dict['rawData'][num]['Recovered'])
-                        c.deaths = int(page_dict['rawData'][num]['Deaths'])
-                        c.save()
-                    else:
-                        county_object = County(
-                            name=page_dict['rawData'][num]['Admin2'],
-                            province=Province.objects.get(
-                                name=page_dict['rawData'][num]['Province_State']),
-                            infected=int(page_dict['rawData'][num]['Confirmed']),
-                            recovered=int(page_dict['rawData'][num]['Recovered']),
-                            deaths=int(page_dict['rawData'][num]['Deaths']),
-                        )
-                        county_object.save()
+                    # Create counties
+                    county_object = County(
+                        name=page_dict['rawData'][num]['Admin2'],
+                        province=Province.objects.get(
+                            name=page_dict['rawData'][num]['Province_State']),
+                        infected=int(page_dict['rawData'][num]['Confirmed']),
+                        recovered=int(page_dict['rawData'][num]['Recovered']),
+                        deaths=int(page_dict['rawData'][num]['Deaths']),
+                    )
+                    county_object.save()
             num += 1
 
         print('Scrape completed successfully!')
