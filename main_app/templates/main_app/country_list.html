@@ -7,7 +7,7 @@
   <input type="search" name="search" placeholder="Search Countries">
 </form>
 
-<table class="highlight">
+<table class="striped list-table">
   <thead>
     <tr>
       <th><a href="?order_by=name&sort={{ sort_type }}">Countries</a></th>
@@ -18,7 +18,7 @@
     {% for country in country_list %}
       <tr class="clickable" data-href="{% url 'countries_detail' country.id %}">
         <td>{{ country.name }}</td>
-        <td>{{ country.infected }}</td>
+        <td data-val="">{{ country.infected }}</td>
       </tr>
     {% endfor %}
   </tbody>

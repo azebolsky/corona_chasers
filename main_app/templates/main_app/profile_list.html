@@ -7,21 +7,18 @@
   <input type="search" name="search" placeholder="Search Profiles">
 </form>
 
-<table class="highlight">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for u in user_list %}
-      <tr class="clickable" data-href="{% url 'profiles_detail' u.id %}">
-        <td><img src="{{ u.profile.avatar }}"></td>
-        <td>{{ u.username }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="profile-container">
+  {% for u in user_list %}
+    <a href="{% url 'profiles_detail' u.id %}" class="collection-item">
+      <div class="profiles grey lighten-4">
+        <div class="profile">
+          <img class="avatar-img circle" src="{{ u.profile.avatar }}">
+          <h5 class="light-blue-text text-darken-2">{{ u.username }}</h5>
+        </div>
+        <i class="material-icons light-blue-text text-darken-2">keyboard_arrow_right</i>
+      </div>
+    </a>
+  {% endfor %}
+</div>
 
 {% endblock %}

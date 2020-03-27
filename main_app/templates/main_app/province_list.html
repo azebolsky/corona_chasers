@@ -7,7 +7,7 @@
   <input type="search" name="search" placeholder="Search Provinces">
 </form>
 
-<table class="highlight">
+<table class="striped list-table">
   <thead>
     <tr>
       <th><a href="?order_by=name&sort={{ sort_type }}">Province</a></th>
@@ -21,11 +21,13 @@
     {% for province in province_list %}
       <tr>
         <td>{{ province.name }}</td>
-        <td>{{ province.infected }}</td>
-        <td>{{ province.recovered }}</td>
-        <td>{{ province.deaths }}</td>
+        <td data-val="">{{ province.infected }}</td>
+        <td data-val="">{{ province.recovered }}</td>
+        <td data-val="">{{ province.deaths }}</td>
         {% if province.county_set.first %}
-          <td><a href="{% url 'counties_index' province.id %}">Counties</a></td>
+          <td><a href="{% url 'counties_index' province.id %}" class="county-link">Counties</a></td>
+        {% else %}
+          <td></td>
         {% endif %}
       </tr>
     {% endfor %}

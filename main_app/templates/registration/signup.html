@@ -6,7 +6,7 @@
 <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Sign Up">
+  <input type="submit" value="Sign Up" class="btn light-blue darken-1">
 </form>
 
 {% endblock %}

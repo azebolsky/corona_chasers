@@ -7,7 +7,7 @@
   <input type="search" name="search" placeholder="Search Counties">
 </form>
 
-<table class="highlight">
+<table class="striped list-table">
   <thead>
     <tr>
       <th><a href="?order_by=name&sort={{ sort_type }}">County</a></th>
@@ -20,9 +20,9 @@
     {% for county in county_list %}
       <tr>
         <td>{{ county.name }}</td>
-        <td>{{ county.infected }}</td>
-        <td>{{ county.recovered }}</td>
-        <td>{{ county.deaths }}</td>
+        <td data-val="">{{ county.infected }}</td>
+        <td data-val="">{{ county.recovered }}</td>
+        <td data-val="">{{ county.deaths }}</td>
       </tr>
     {% endfor %}
   </tbody>

@@ -8,39 +8,42 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link href="//db.onlinewebfonts.com/c/6ca68131925d7aa08c97e57d9e8b2ed7?family=Cloister+Black" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
   <title>Corona Chasers</title>
 </head>
 <body>
-  <nav class="nav-wrapper red darken-3">
-    <div class="container">
-      <a href="{% url 'home' %}" class="brand-logo">&nbsp;&nbsp;Corona Chasers</a>
+  <header class="navbar-fixed">
+    <nav class="nav-wrapper blue darken-2">
+      <a href="{% url 'home' %}" class="brand-logo">Corona Chasers</a>
       <a href="#" class="sidenav-trigger" data-target="mobile-links">
         <i class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="{% url 'home' %}">World</a></li>
-        <li><a href="{% url 'countries_index' %}">Countries</a></li>
-        <li><a href="{% url 'profiles_index' %}">User Profiles</a></li>
+        <li><a href="{% url 'home' %}">WORLD</a></li>
+        <li><a href="{% url 'countries_index' %}">COUNTRIES</a></li>
+        <li><a href="{% url 'profiles_index' %}">USER PROFILES</a></li>
         {% if user.is_authenticated %}
-          <li><a href="{% url 'profiles_detail' user.id %}">{{ user.username }}</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li><a href="{% url 'profiles_detail' user.id %}">{{ user.username|upper }}</a></li>
+          <li><a href="{% url 'logout' %}">LOG OUT</a></li>
         {% else %}
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">SIGN UP</a></li>
+          <li><a href="{% url 'login' %}">LOG IN</a></li>
         {% endif %}
       </ul>
-    </div>
-  </nav>
-  <ul class="sidenav" id="mobile-links">
-    <li><a href="{% url 'home' %}">World</a></li>
-    <li><a href="{% url 'countries_index' %}">Countries</a></li>
-    <li><a href="{% url 'profiles_index' %}">User Profiles</a></li>
+    </nav>
+  </header>
+  
+  <ul class="sidenav right" id="mobile-links">
+    <li><a href="{% url 'home' %}">WORLD</a></li>
+    <li><a href="{% url 'countries_index' %}">COUNTRIES</a></li>
+    <li><a href="{% url 'profiles_index' %}">USER PROFILES</a></li>
     {% if user.is_authenticated %}
       <li><a href="{% url 'profiles_detail' user.id %}">{{ user.username }}</a></li>
-      <li><a href="{% url 'logout' %}">Log Out</a></li>
+      <li><a href="{% url 'logout' %}">LOG OUT</a></li>
     {% else %}
-      <li><a href="{% url 'signup' %}">Sign Up</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'signup' %}">SIGN UP</a></li>
+      <li><a href="{% url 'login' %}">LOG IN</a></li>
     {% endif %}
   </ul>
   
@@ -49,7 +52,7 @@
     {% endblock %} 
   </main>
   
-  <footer class="page-footer blue-grey">
+  <footer class="page-footer blue darken-2">
     <div class="center">&copy; 2020 Corona Chasers</div>
   </footer>
   
