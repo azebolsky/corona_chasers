@@ -196,3 +196,11 @@ textarea {
   bottom: 10px;
   right: 10px;
 }
+
+.main-title {
+  font-weight: bold;
+}
+
+.main-table {
+  font-size: 1.4rem;
+}
